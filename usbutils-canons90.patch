@@ -1,0 +1,11 @@
+diff -aurN usbutils-001.orig/usb.ids usbutils-001/usb.ids
+--- usbutils-001.orig/usb.ids	2011-02-17 23:39:41.000000000 +0100
++++ usbutils-001/usb.ids	2011-02-17 23:40:20.000000000 +0100
+@@ -3248,6 +3248,7 @@
+ 	319a  EOS 7D
+ 	31bc  PowerShot D10
+ 	31c0  PowerShot SX200 IS
++	31e1  PowerShot S90
+ 	31e5  Digital IXUS 200 IS
+ 	31ee  SELPHY ES40
+ 	31f3  PowerShot Digital ELPH SD1400 IS
