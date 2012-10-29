@@ -12,7 +12,7 @@ URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRequires:	libusb-compat-devel
+BuildRequires:	libusbx-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_datadir	/etc
