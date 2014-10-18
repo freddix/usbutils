@@ -1,21 +1,22 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	005
-Release:	2
+Version:	007
+Release:	1
 License:	GPL
 Group:		Applications/System
-#Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.bz2
-Source0:	http://ftp.de.debian.org/debian/pool/main/u/usbutils/%{name}_%{version}.orig.tar.gz
-# Source0-md5:	2e990265d472e2f6f0662356d654683b
-Patch0:		%{name}-canons90.patch
+Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
+# Source0-md5:	c9df5107ae9d26b10a1736a261250139
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	libusbx-devel
+BuildRequires:	rpm-pythonprov
+Requires:	coreutils
+Requires:	hwids
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_datadir	/etc
+%define		_datadir	/usr/share/hwdata
 
 %description
 usbutils contains a utility for inspecting devices connected to the
@@ -23,7 +24,6 @@ USB bus.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 cd usbhid-dump
@@ -40,7 +40,8 @@ cd ..
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules	\
+	--disable-zlib
 %{__make}
 
 %install
@@ -57,10 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/lsusb
+%attr(755,root,root) %{_bindir}/lsusb.py
 %attr(755,root,root) %{_bindir}/usb-devices
 %attr(755,root,root) %{_bindir}/usbhid-dump
 %attr(755,root,root) %{_sbindir}/*
-%{_datadir}/usb.ids
 %{_pkgconfigdir}/usbutils.pc
 %{_mandir}/man1/*.1*
 %{_mandir}/man8/*.8*
