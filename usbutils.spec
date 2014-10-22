@@ -1,11 +1,11 @@
 Summary:	Linux USB utilities
 Name:		usbutils
-Version:	007
+Version:	008
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://www.kernel.org/pub/linux/utils/usb/usbutils/%{name}-%{version}.tar.xz
-# Source0-md5:	c9df5107ae9d26b10a1736a261250139
+# Source0-md5:	2780b6ae21264c888f8f30fb2aab1259
 URL:		http://www.linux-usb.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -24,6 +24,8 @@ USB bus.
 
 %prep
 %setup -q
+
+%{__sed} -i 's/env python/python/' lsusb.py
 
 %build
 cd usbhid-dump
@@ -61,7 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/lsusb.py
 %attr(755,root,root) %{_bindir}/usb-devices
 %attr(755,root,root) %{_bindir}/usbhid-dump
-%attr(755,root,root) %{_sbindir}/*
 %{_pkgconfigdir}/usbutils.pc
 %{_mandir}/man1/*.1*
 %{_mandir}/man8/*.8*
